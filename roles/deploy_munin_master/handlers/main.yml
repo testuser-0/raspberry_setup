@@ -1,0 +1,10 @@
+---
+- name: Restart munin
+  service:
+    name: munin
+    state: restarted
+
+- name: Restart lighttpd
+  service:
+    name: lighttpd
+    state: restarted

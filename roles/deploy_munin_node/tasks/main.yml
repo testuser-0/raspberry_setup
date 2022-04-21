@@ -1,0 +1,13 @@
+---
+- name: Install munin-node
+  apt:
+      update_cache: yes
+      state: present
+      pkg:
+        - munin-node
+
+- name: Generate munin-node.conf
+  template:
+    src: "munin-node.conf.j2"
+    dest: "{{ dest_munin_node_conf }}"
+  notify: Restart munin-node

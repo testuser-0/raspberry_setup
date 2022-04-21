@@ -1,0 +1,12 @@
+---
+#- include_tasks: install.yml
+#  tags: install
+
+#- include_tasks: configure_unbound.yml
+#  tags: configure
+
+#- include_tasks: configure_system.yml
+#  tags: configure
+
+- include_tasks: configure_munin-node.yml
+  tags: configure

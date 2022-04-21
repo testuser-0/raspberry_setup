@@ -1,0 +1,30 @@
+---
+- name: Download the root hints file
+  get_url:
+    url: "{{ url_root_hints }}"
+    dest: "{{ dest_root_hints }}"
+    mode: '0644'
+
+- name: Generate unbound conf file
+  template:
+    src: "pi-hole.conf.j2"
+    dest: "{{ dest_unbound_confd }}"
+  notify: Restart unbound
+
+- name: Create folder for 99-edns.conf
+  file:
+    path: "{{ edns_folder }}"
+    state: directory
+
+- name: Copy 99-edns.conf
+  copy:
+    src: "99-edns.conf"
+    dest: "{{ dest_edns }}"
+  notify: Restart unbound
+
+- name: Enable extended statistics for monitoring tools
+  copy:
+    src: "unbound.conf"
+    dest: "{{ dest_unbound_conf  }}"
+  notify: Restart unbound
+

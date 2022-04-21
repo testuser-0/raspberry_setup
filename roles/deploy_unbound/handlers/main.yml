@@ -1,0 +1,10 @@
+---
+- name: Restart unbound
+  service:
+    name: unbound
+    state: restarted
+
+- name: Restart munin-node
+  service:
+    name: munin-node
+    state: restarted

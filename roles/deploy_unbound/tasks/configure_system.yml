@@ -1,0 +1,17 @@
+---
+- name: Edit resolved.conf
+  copy:
+    src: "resolved.conf"
+    dest: "{{ dest_resolved_conf }}"
+    mode: '0644'
+    backup: yes
+
+- name: Restart systemd-resolved
+  systemd:
+    name: systemd-resolved
+    state: restarted
+
+- name: Copy resolv.conf
+  copy:
+    src: "resolv.conf"
+    dest: "{{ dest_resolv_conf }}"

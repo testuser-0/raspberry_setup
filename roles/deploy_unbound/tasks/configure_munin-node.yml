@@ -1,0 +1,26 @@
+---
+- name: Edit munin-node.service
+  block:
+    - name: Modify munin-node.service
+      copy:
+        src: munin-node.service
+        dest: "{{ dest_munin_node_service }}"
+
+    - name: Force systemd to reread configs
+      systemd:
+        daemon_reload: yes
+      notify: Restart munin-node
+
+- name: Copy unbound_plugins.conf
+  copy:
+    src: unbound_plugins.conf
+    dest: "{{ dest_unbound_plugins_conf }}"
+  notify: Restart munin-node
+
+- name: Enable unbound monitoring plugins
+  file:
+    src: "{{ src_unbound_munin_plugin }}"
+    dest: "{{ dest_unbound_munin_plugin }}{{ item }}"
+    state: link
+  loop: "{{ unbound_plugins }}"
+  notify: Restart munin-node

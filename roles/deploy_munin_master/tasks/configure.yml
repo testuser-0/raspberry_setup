@@ -1,0 +1,12 @@
+---
+  - name: Copy munin.conf
+    copy:
+     src: "munin.conf"
+     dest: "{{ dest_munin_conf }}"
+    notify: Restart munin
+
+  - name: Copy munin_web.conf
+    copy:
+     src: "munin_web.conf"
+     dest: "{{ dest_munin_web }}"
+    notify: Restart lighttpd

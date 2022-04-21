@@ -1,0 +1,9 @@
+---
+- name: Install munin, lighttpd and libcgi-fast-perl
+  apt:
+      update_cache: yes
+      state: present
+      pkg:
+        - munin
+        - lighttpd
+        - libcgi-fast-perl

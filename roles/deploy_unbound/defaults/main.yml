@@ -1,0 +1,30 @@
+---
+url_root_hints: "https://www.internic.net/domain/named.root"
+dest_root_hints: "/var/lib/unbound/root.hints"
+
+dest_resolved_conf: "/etc/systemd/resolved.conf"
+
+edns_folder: "/etc/dnsmasq.d/"
+dest_edns : "/etc/dnsmasq.d/99-edns.conf"
+
+dest_unbound_conf: "/etc/unbound/unbound.conf"
+dest_unbound_confd: "/etc/unbound/unbound.conf.d/pi-hole.conf"
+
+dest_resolv_conf: "/etc/resolv.conf"
+
+src_unbound_munin_plugin: "/usr/share/munin/plugins/unbound_munin_"
+dest_unbound_munin_plugin: "/etc/munin/plugins/"
+dest_unbound_plugins_conf: "/etc/munin/plugin-conf.d/unbound_plugins.conf"
+
+dest_munin_node_service: "/lib/systemd/system/munin-node.service"
+
+unbound_plugins:
+  - unbound_munin_by_class
+  - unbound_munin_by_flags
+  - unbound_munin_by_opcode
+  - unbound_munin_by_rcode
+  - unbound_munin_by_type
+  - unbound_munin_histogram
+  - unbound_munin_hits
+  - unbound_munin_memory
+  - unbound_munin_queue
