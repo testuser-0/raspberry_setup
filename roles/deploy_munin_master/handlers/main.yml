@@ -4,6 +4,11 @@
     name: munin
     state: restarted
 
+- name: Restart munin-node
+  service:
+    name: munin-node
+    state: restarted
+
 - name: Restart lighttpd
   service:
     name: lighttpd

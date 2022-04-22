@@ -1,12 +1,20 @@
 ---
-  - name: Copy munin.conf
-    copy:
-     src: "munin.conf"
-     dest: "{{ dest_munin_conf }}"
-    notify: Restart munin
+- name: Copy munin.conf
+  copy:
+    src: "munin.conf"
+    dest: "{{ dest_munin_conf }}"
+  notify: Restart munin
 
-  - name: Copy munin_web.conf
-    copy:
-     src: "munin_web.conf"
-     dest: "{{ dest_munin_web }}"
-    notify: Restart lighttpd
+- name: Copy munin_web.conf
+  copy:
+   src: "munin_web.conf"
+    dest: "{{ dest_munin_web }}"
+  notify: Restart lighttpd
+
+- name: Add munin master plugins
+  file:
+    src: "{{ src_munin_master_plugins }}{{ item }}"
+    dest: "{{ dest_munin_master_plugins }}{{ item }}"
+    state: link
+  loop: "{{ munin_master_plugins }}"
+  notify: Restart munin-node

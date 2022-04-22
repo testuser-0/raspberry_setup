@@ -2,3 +2,9 @@
 dest_munin_conf: "/etc/munin/munin.conf"
 
 dest_munin_web: "/etc/lighttpd/conf-enable/"
+
+src_munin_master_plugins: "/usr/share/munin/plugins/"
+dest_munin_master_plugins: "/etc/munin/plugins/"
+munin_master_plugins:
+  - munin_stats
+  - munin_update

@@ -1,10 +1,10 @@
 ---
-- hosts: 192.168.1.2
+- hosts:
   user: root
 
   roles:
     #- deploy_munin_node
     #- install_packages
     #- deploy_pi-hole
-    - deploy_unbound
+    #- deploy_unbound
     #- deploy_munin_master
